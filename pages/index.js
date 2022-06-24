@@ -4,6 +4,7 @@ import styles from '../styles/Home.module.css'
 import HeadMeta from '../components/headMeta'
 
 export default function Home({isRobot}) {
+  console.log(isRobot);
   return (
     <div className={styles.container}>
       <HeadMeta title="home" isRobot={isRobot}></HeadMeta>
@@ -64,8 +65,8 @@ export default function Home({isRobot}) {
   )
 }
 
-Home.getInitialProps = async ({ req }) => {
-  const userAgent = req ? req.headers['user-agent'] : navigator.userAgent;
+export const getServerSideProps = ({ req }) => {
+  const userAgent = req.headers['user-agent']
   const isRobot = /bot|spider|crawl/i.test(userAgent);
-  return { isRobot }
+  return { props: { isRobot } }
 }
