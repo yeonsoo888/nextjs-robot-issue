@@ -4,7 +4,6 @@ import styles from '../styles/Home.module.css'
 import HeadMeta from '../components/headMeta'
 
 export default function Home({isRobot}) {
-  console.log(isRobot);
   return (
     <div className={styles.container}>
       <HeadMeta title="home" isRobot={isRobot}></HeadMeta>
