@@ -1,13 +1,6 @@
-import {useEffect} from 'react';
 import Head from 'next/head'
 
-function HeadMeta({children,title}) {
-  let uA,isRobot;
-  useEffect(() => {
-    let uA = window.navigator.userAgent;
-    let isRobot = /bot|spider|crawl/i.test(uA);
-  }, [])
-  
+export default function HeadMeta({children,title,isRobot}) {
   return (
     <Head>
         <title>{title || "nextjs"}</title>
@@ -15,7 +8,7 @@ function HeadMeta({children,title}) {
         <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         {
-          isRobot ||
+          !isRobot ||
           (
             <>
               <meta property="og:title" content={title || "nextjs"} />
@@ -29,4 +22,3 @@ function HeadMeta({children,title}) {
   )
 }
 
-export default HeadMeta

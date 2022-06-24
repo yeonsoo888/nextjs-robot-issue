@@ -2,11 +2,11 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
 import HeadMeta from '../components/headMeta'
-import Header from '../components/header'
-export default function Home() {
+
+export default function Home({isRobot}) {
   return (
     <div className={styles.container}>
-      <HeadMeta title="home"></HeadMeta>
+      <HeadMeta title="home" isRobot={isRobot}></HeadMeta>
       <main className={styles.main}>
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
@@ -62,4 +62,10 @@ export default function Home() {
       </footer>
     </div>
   )
+}
+
+Home.getInitialProps = async ({ req }) => {
+  const userAgent = req ? req.headers['user-agent'] : navigator.userAgent;
+  const isRobot = /bot|spider|crawl/i.test(userAgent);
+  return { isRobot }
 }
