@@ -5,7 +5,7 @@ function Page1({isRobot}) {
   return (
     <>
         <HeadMeta title="page1" isRobot={isRobot}></HeadMeta>
-        <div>Page1 입니다.</div>
+        <div>Page1 입니다.12312312</div>
     </>
   )
 }
